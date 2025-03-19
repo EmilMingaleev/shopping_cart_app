@@ -79,6 +79,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Ensure binstubs are available
+        run: bundle binstubs rspec-core
+
+      - name: Run setup script
+        run: bin/setup
+
       - name: Setup database
         env:
           RAILS_ENV: test
@@ -88,7 +94,7 @@ jobs:
       - name: Run tests with RSpec
         env:
           RAILS_ENV: test
-        run: bin/rspec
+        run: bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
