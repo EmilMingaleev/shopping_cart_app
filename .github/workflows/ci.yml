@@ -60,6 +60,7 @@ jobs:
       postgres:
         image: postgres
         env:
+          POSTGRES_DB: shopping_cart_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
@@ -83,12 +84,18 @@ jobs:
         run: bundle binstubs rspec-core
 
       - name: Run setup script
-        run: bin/setup
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/shopping_cart_test
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
+          bin/setup
 
       - name: Setup database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/shopping_cart_test
         run: bin/rails db:test:prepare
 
       - name: Run tests with RSpec
