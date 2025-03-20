@@ -1,6 +1,7 @@
 gem "interactor"
 gem "rubocop"
 gem "rubocop-rails"
+gem "seedbank"
 
 group :development, :test do
   gem "factory_bot_rails"

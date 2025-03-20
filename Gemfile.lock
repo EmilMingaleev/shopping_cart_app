@@ -311,6 +311,8 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     securerandom (0.4.1)
+    seedbank (0.5.0)
+      rake (>= 10.0)
     selenium-webdriver (4.29.1)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -413,6 +415,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   rubocop-rspec
   rubocop-rspec_rails
+  seedbank
   selenium-webdriver
   shoulda-matchers
   solid_cable
@@ -424,6 +427,9 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+
+RUBY VERSION
+   ruby 3.4.2p28
 
 BUNDLED WITH
    2.6.2
