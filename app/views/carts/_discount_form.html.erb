@@ -1,0 +1,6 @@
+<p>Скидка: <%= cart.discount %> ₽</p>
+<form action="<%= update_discount_cart_path %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="number" name="discount" min="0" max="1000" value="<%= cart.discount %>">
+  <button type="submit">Обновить скидку</button>
+</form>

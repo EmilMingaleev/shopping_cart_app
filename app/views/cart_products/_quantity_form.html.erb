@@ -1,0 +1,13 @@
+<form action="<%= cart_product_path(cart_product) %>" method="post" class="quantity-form">
+  <input type="hidden" name="_method" value="patch">
+  <input
+    type="number"
+    name="quantity"
+    min="1"
+    value="<%= cart_product.quantity %>"
+    data-product-id="<%= cart_product.id %>"
+    data-cart-target="quantityInput"
+    data-action="input->cart#updateTotals"
+  >
+  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Изменить</button>
+</form>

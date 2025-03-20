@@ -2,6 +2,8 @@ gem "interactor"
 gem "rubocop"
 gem "rubocop-rails"
 gem "seedbank"
+gem "tailwindcss-ruby"
+gem "tailwindcss-rails"
 
 group :development, :test do
   gem "factory_bot_rails"

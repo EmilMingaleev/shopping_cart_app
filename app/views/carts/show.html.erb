@@ -1,72 +1,21 @@
 <h2>Корзина</h2>
 
-<p>Скидка: <%= @cart.discount %> ₽</p>
-<form action="<%= update_discount_cart_path %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <input type="number" name="discount" min="0" max="1000" value="<%= @cart.discount %>">
-  <button type="submit">Обновить скидку</button>
-</form>
+<%= render 'carts/discount_form', cart: @cart %>
 
 <h3>Товары в корзине:</h3>
-<% if @cart.cart_products.any? %>
-  <ul>
-    <% @cart.cart_products.each do |cart_product| %>
-      <li>
-        <% product = cart_product.product %>
-
-        <% if product.image.attached? %>
-          <%= image_tag product.image, size: "150x150", alt: product.name %>
-        <% else %>
-          <p>Нет изображения</p>
-        <% end %>
-
-        <p>
-          <%= product.name %> - <%= product.price %> ₽ × 
-          <span id="quantity-<%= cart_product.id %>"><%= cart_product.quantity %></span> = 
-          <strong id="total-<%= cart_product.id %>"><%= cart_product.quantity * product.price %> ₽</strong>
-        </p>
-
-        <form action="<%= cart_product_path(cart_product) %>" method="post" class="quantity-form">
-          <input type="hidden" name="_method" value="patch">
-          <input type="number" name="quantity" min="1" value="<%= cart_product.quantity %>" data-product-id="<%= cart_product.id %>">
-          <button type="submit">Изменить</button>
-        </form>
-        
-        <form action="<%= cart_product_path(cart_product) %>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <button type="submit">Удалить</button>
-        </form>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Корзина пуста.</p>
-<% end %>
+<%= render 'carts/cart_products', cart: @cart %>
 
 <p><strong>Итого: <span id="total-price"><%= @total_price_with_discount %></span> ₽</strong></p>
 
-<form action="<%= clear_cart_path %>" method="post">
-  <button type="submit">Очистить корзину</button>
-</form>
+<%= render 'carts/clear_cart_form' %>
+<%= render 'carts/checkout_form' %>
 
-<form action="<%= clear_cart_path %>" method="post">
-  <button type="submit">Оформить</button>
-</form>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
+<!-- Добавьте Stimulus-контроллер и передайте данные о ценах -->
+<div data-controller="cart">
+  <script type="text/javascript">
     document.querySelectorAll(".quantity-form input[type='number']").forEach(input => {
-      input.addEventListener("input", function() {
-        let productId = this.dataset.productId;
-        let quantity = parseInt(this.value) || 1;
-        let price = parseInt(<%= @cart.cart_products.map { |cp| [cp.id, cp.product.price] }.to_h.to_json.html_safe %>[productId]);
-
-        let totalElement = document.getElementById(`total-${productId}`);
-        let quantityElement = document.getElementById(`quantity-${productId}`);
-        
-        totalElement.innerText = (quantity * price) + " ₽";
-        quantityElement.innerText = quantity;
-      });
+      input.dataset.prices = '<%= @cart.cart_products.map { |cp| [cp.id, cp.product.price] }.to_h.to_json.html_safe %>';
     });
-  });
-</script>
+  </script>
+</div>
+

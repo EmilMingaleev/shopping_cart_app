@@ -1,0 +1,11 @@
+<% if cart.cart_products.any? %>
+  <ul>
+    <% cart.cart_products.each do |cart_product| %>
+      <li>
+        <%= render 'cart_products/cart_product', cart_product: cart_product %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Корзина пуста.</p>
+<% end %>
