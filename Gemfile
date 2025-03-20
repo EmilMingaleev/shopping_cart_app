@@ -41,3 +41,5 @@ group :test do
 end
 
 eval_gemfile "Gemfile.app"
+
+gem "propshaft"

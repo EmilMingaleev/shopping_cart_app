@@ -1,0 +1,37 @@
+<div class="w-full mb-20">
+  <header class="mb-8 flex flex-wrap items-center justify-between gap-6 sm:flex-nowrap">
+    <h1 class="grow font-semibold">
+      Корзина
+    </h1>
+    <% if cart.cart_products.any? %>
+      <div>
+        <span>
+          <%= link_to 'Очистить корзину', clear_cart_path,
+            class: 'transition-colors hover:text-dark-gray-900',
+            data: {
+              'turbo-method': :delete,
+              'turbo_confirm': 'Вы действительно хотите очистить корзину?'
+            } %>
+        </span>
+      </div>
+    <% end %>
+  </header>
+
+  <% if cart.cart_products.blank? %>
+    <div class="py-20">
+      <%= inline_svg_tag 'cart-empty.svg', class: 'mx-auto mb-6' %>
+      <div class="text-center">
+        <h2 class="font-semibold mb-2">
+          В корзине нет товаров
+        </h2>
+        <h5>
+          Добавьте товар из каталога.
+        </h5>
+      </div>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag 'cart_body' do %>
+    <%= render 'cart_body', cart: cart %>
+  <% end %>
+</div>
