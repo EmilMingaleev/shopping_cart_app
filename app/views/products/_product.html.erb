@@ -1,0 +1,10 @@
+<div class="product flex flex-col items-center gap-3 border-b border-light-gray-300 py-3">
+  <% if product.image.attached? %>
+    <%= image_tag product.image, class: "max-w-[100px] rounded-lg shadow-md" %>
+  <% else %>
+    <p class="text-gray-500">Нет изображения</p>
+  <% end %>
+  <h3 class="text-lg font-semibold"><%= product.name %></h3>
+  <p class="text-gray-700"><%= product.price %> ₽</p>
+  <%= link_to "Добавить в корзину", add_to_cart_path(product), method: :post, class: "bg-primary-500 text-white px-4 py-2 rounded hover:bg-primary-700" %>
+</div>

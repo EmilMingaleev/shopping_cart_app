@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cart-summary {
+    @apply text-lg text-gray-800 mb-4;
+  }
+
+  .slider-label-container {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .slider-label {
+    @apply text-sm text-gray-500;
+  }
+
+  .slider-value {
+    @apply text-lg font-bold text-teal-400;
+  }
+
+  .slider-container {
+    @apply w-full flex flex-col relative mb-5;
+  }
+
+  .slider-labels {
+    @apply flex justify-between text-sm text-gray-500 mb-1;
+  }
+
+  .slider {
+    @apply w-full h-2 bg-gray-300 rounded outline-none transition-all;
+  }
+
+  .order-total {
+    @apply text-lg font-medium text-gray-900 mt-3;
+  }
+
+  .slider {
+    @apply w-full h-2 rounded-lg outline-none transition-all appearance-none bg-gray-300;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply w-6 h-6 rounded-full cursor-pointer transition-transform;
+    background: #4AD9BD;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  li.relative {
+    transition: transform 0.2s ease-in-out;
+    background-color: #f9fafb;
+  }
+  
+  li.relative:hover {
+    transform: scale(1.05);
+    background-color: #f3f4f6;
+  }
+  
+  .trash-icon {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .trash-icon:hover {
+    transform: scale(1.25);
+  }  
+
+  .checkout-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #4AD9BD;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .checkout-button:hover {
+    background-color: #3cc9a8;
+  }
+}
+

@@ -1,0 +1,16 @@
+<% product = cart_product.product %>
+
+<% if product.image.attached? %>
+  <%= image_tag product.image, size: "150x150", alt: product.name, class: "rounded-lg shadow-md" %>
+<% else %>
+  <p class="text-gray-500">Нет изображения</p>
+<% end %>
+
+<p class="mt-2">
+  <%= product.name %> - <%= product.price %> ₽ × 
+  <span id="quantity-<%= cart_product.id %>" data-cart-target="quantity"><%= cart_product.quantity %></span> = 
+  <strong id="total-<%= cart_product.id %>" data-cart-target="total"><%= cart_product.quantity * product.price %> ₽</strong>
+</p>
+
+<%= render 'cart_products/quantity_form', cart_product: cart_product %>
+<%= render 'cart_products/delete_form', cart_product: cart_product %>

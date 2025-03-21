@@ -1,6 +1,10 @@
-gem "interactor"
-gem "rubocop"
-gem "rubocop-rails"
+gem 'inline_svg'
+gem 'interactor'
+gem 'rubocop'
+gem 'rubocop-rails'
+gem 'seedbank'
+gem 'tailwindcss-rails', '~> 3.3.1'
+gem 'tailwindcss-ruby'
 
 group :development, :test do
   gem "factory_bot_rails"
