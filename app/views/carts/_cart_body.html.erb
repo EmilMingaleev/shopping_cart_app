@@ -35,7 +35,7 @@
               'turbo_confirm': 'Вы действительно хотите удалить товар?'
             } do %>
             <%= inline_svg_tag 'trash.svg',
-              class: 'sm:absolute sm:right-0 sm:top-3 [&>path]:transition-colors [&>path]:hover:fill-light-gray-500' %>
+              class: 'trash-icon sm:absolute sm:right-0 sm:top-3 [&>path]:transition-colors [&>path]:hover:fill-light-gray-500' %>
           <% end %>
         </div>
       </div>
@@ -50,3 +50,20 @@
     </h3>
   </div>
 <% end %>
+
+  <style>
+    li.relative {
+      transition: transform 0.2s ease-in-out;
+      background-color: #f9fafb; /* Светлый оттенок */
+    }
+    li.relative:hover {
+      transform: scale(1.05);
+      background-color: #f3f4f6; /* Чуть светлее при наведении */
+    }
+    .trash-icon {
+      transition: transform 0.2s ease-in-out;
+    }
+    .trash-icon:hover {
+      transform: scale(1.25);
+    }
+  </style>
