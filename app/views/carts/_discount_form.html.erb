@@ -1,9 +1,7 @@
-<div class="cart-summary">
+<div class="cart-summary mt-[-20px]" data-controller="discount">
   <div class="slider-label-container">
-    <div class="slider-label">
-      Передвигая слайдер, укажите сумму скидки
-    </div>
-    <div class="slider-value" id="discountValue">0 ₽</div>
+    <div class="slider-label">Передвигая слайдер, укажите сумму скидки</div>
+    <div class="slider-value" data-discount-target="value">0 ₽</div>
   </div>
 
   <div class="slider-container">
@@ -12,111 +10,10 @@
       <span>1000 ₽</span>
     </div>
 
-    <input type="range" min="0" max="1000" value="0" class="slider" id="discountRange">
+    <input type="range" min="0" max="1000" value="0" class="slider" data-discount-target="slider" data-action="input->discount#update">
   </div>
 
-  <div class="order-total">
-    Сумма заказа: <span id="orderTotal"><%= cart.total_price %> ₽</span>
+  <div>
+    Сумма заказа: <span data-discount-target="orderTotal" data-total="<%= @cart.total_price %>"><%= @cart.total_price %> ₽</span>
   </div>
 </div>
-
-<style>
-  .cart-summary {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 15px;
-  }
-
-  .slider-label-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .slider-label {
-    font-size: 14px;
-    color: #777;
-  }
-
-  .slider-value {
-    font-size: 16px;
-    font-weight: bold;
-    color: #4AD9BD;
-  }
-
-  .slider-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .slider-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 5px;
-  }
-
-  .slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(to right, #4AD9BD 0%, #ccc 0%);
-    border-radius: 5px;
-    outline: none;
-    transition: background 0.3s;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    background: #4AD9BD;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -7px;
-    transition: transform 0.2s;
-  }
-
-  .slider::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
-  }
-
-  .order-total {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    margin-top: 10px;
-  }
-</style>
-
-<script>
-  const slider = document.getElementById('discountRange');
-  const output = document.getElementById('discountValue');
-  const orderTotal = document.getElementById('orderTotal');
-
-  let cartTotal = 4500;
-
-  function updateSliderColor() {
-    const min = slider.min;
-    const max = slider.max;
-    const val = slider.value;
-    const percent = ((val - min) / (max - min)) * 100;
-
-    slider.style.background = `linear-gradient(to right, #4AD9BD ${percent}%, #ccc ${percent}%)`;
-
-    output.textContent = `${val} ₽`;
-
-    orderTotal.textContent = `${cartTotal - val} ₽`;
-  }
-
-  slider.addEventListener('input', updateSliderColor);
-
-  updateSliderColor();
-</script>
