@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CLEANSTONE</title>
+    <title>Shopp App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
+  <body class="bg-gray-100">
     <%= render 'shared/header' %>
-    <main class="container mx-auto max-w-3xl px-5">
+    <main class="container mx-auto max-w-3xl px-4 py-8">
       <%= yield %>
     </main>
   </body>

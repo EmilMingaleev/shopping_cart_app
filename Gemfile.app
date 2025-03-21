@@ -3,7 +3,7 @@ gem "rubocop"
 gem "rubocop-rails"
 gem "seedbank"
 gem "tailwindcss-ruby"
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 3.3.1"
 gem 'inline_svg'
 
 group :development, :test do

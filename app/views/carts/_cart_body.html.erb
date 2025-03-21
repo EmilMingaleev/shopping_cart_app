@@ -27,7 +27,7 @@
         </div>
         <div class="flex items-center gap-2 sm:gap-0">
           <h4 class="font-semibold">
-            <%= number_to_currency(cart_product.total_price, unit: "₽", format: "%n %u") %>
+            <%= number_to_currency(cart_product.product.price * cart_product.quantity, unit: "₽", format: "%n %u") %>
           </h4>
           <%= link_to cart_product_path(cart_product),
             data: {
@@ -42,3 +42,11 @@
     </li>
   <% end %>
 </ul>
+
+<% unless cart.cart_products.empty? %>
+  <div class="mt-8 text-right">
+    <h3 class="text-lg font-semibold">
+      <%= cart.cart_products.sum(:quantity) %> товара на сумму <%= number_to_currency(cart.total_price, unit: "₽", format: "%n %u") %>
+    </h3>
+  </div>
+<% end %>

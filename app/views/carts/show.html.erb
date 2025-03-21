@@ -1,1 +1,6 @@
 <%= render 'cart', cart: @cart %>
+
+<% unless @cart.cart_products.empty? %>
+  <%= render 'discount_form', cart: @cart %>
+  <%= render 'checkout_form', cart: @cart %>
+<% end %>

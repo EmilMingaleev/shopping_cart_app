@@ -1,3 +1,24 @@
 <form action="<%= clear_cart_path %>" method="post">
-  <button type="submit">Оформить</button>
+  <button type="submit" class="checkout-button">Оформить</button>
 </form>
+
+<style>
+  .checkout-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #4AD9BD;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .checkout-button:hover {
+    background-color: #3cc9a8;
+  }
+</style>

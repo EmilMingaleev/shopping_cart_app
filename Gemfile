@@ -9,7 +9,6 @@ gem "propshaft"
 gem "puma", ">= 5.0"
 gem "rails", "~> 8.0.2"
 gem "stimulus-rails"
-gem "tailwindcss-rails"
 gem "turbo-rails"
 
 
@@ -41,5 +40,3 @@ group :test do
 end
 
 eval_gemfile "Gemfile.app"
-
-gem "propshaft"
