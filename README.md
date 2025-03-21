@@ -1,24 +1,37 @@
-# README
+# Корзина покупок
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Это тестовое задание на Ruby on Rails для управления корзиной покупок
 
-Things you may want to cover:
 
-* Ruby version
+## Установка
 
-* System dependencies
+1. Клонируйте репозиторий:
 
-* Configuration
+    ```bash
+    git clone <url>
+    cd <папка>
+    ```
 
-* Database creation
+2. Установите зависимости:
 
-* Database initialization
+    ```bash
+    bundle install
+    ```
 
-* How to run the test suite
+3. Создайте и мигрируйте базу данных:
 
-* Services (job queues, cache servers, search engines, etc.)
+    ```bash
+    rails db:create
+    rails db:migrate
+    ```
+4. Заполните базу данных тестовыми данными:
 
-* Deployment instructions
+    ```bash
+    rails db:seed
+    ```
 
-* ...
+4. Запустите сервер:
+
+    ```bash
+    bin/dev
+    ```
