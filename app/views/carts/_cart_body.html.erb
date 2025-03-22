@@ -1,54 +1,82 @@
-<ul class="mb-8">
-  <% cart.cart_products.each do |cart_product| %>
-    <li class="relative flex flex-col items-center justify-between gap-3 border-b border-light-gray-300 py-3 sm:flex-row sm:gap-10">
-      <div class="w-full flex grow items-center justify-start gap-4 sm:max-w-[400px]">
-        <%= image_tag cart_product.product.image, class: "max-w-[100px]" %>
-        <h5>
-          <%= cart_product.product.name %>
-        </h5>
-      </div>
-      <div class="flex w-full items-center justify-between">
-        <div class="flex">
-          <%= link_to cart_product_path(cart_product, quantity: cart_product.quantity - 1),
-            class: 'rounded-md rounded-r-none bg-light-gray-100 p-1 transition-colors hover:bg-gray-300',
-            'data-turbo-method': :patch do
-          %>
-            <%= inline_svg_tag 'minus.svg' %>
-          <% end %>
-          <h4 class="min-h-8 min-w-8 bg-light-gray-100 p-1 text-center ">
-            <%= cart_product.quantity %>
-          </h4>
-          <%= link_to cart_product_path(cart_product, quantity: cart_product.quantity + 1),
-            class: 'rounded-md rounded-l-none bg-light-gray-100 p-1 transition-colors hover:bg-gray-300',
-            'data-turbo-method': :patch do
-          %>
-            <%= inline_svg_tag 'plus.svg' %>
-          <% end %>
+<div id="cart_body" data-turbo-frame="cart">
+  <ul class="mb-8">
+    <% cart.cart_products.order(:id).each do |cart_product| %>
+      <li class="relative flex flex-col items-center justify-between gap-3 border-b border-light-gray-300 py-3 sm:flex-row sm:gap-10">
+        <div class="w-full flex grow items-center justify-start gap-4 sm:max-w-[400px]">
+          <%= image_tag cart_product.product.image, class: "max-w-[100px]" %>
+          <h5>
+            <%= cart_product.product.name %>
+          </h5>
         </div>
-        <div class="flex items-center gap-2 sm:gap-0">
+        <div class="flex w-full items-center justify-between">
+          <div class="flex">
+            <%= link_to cart_product_path(cart_product, quantity: cart_product.quantity - 1),
+              class: 'rounded-md rounded-r-none bg-light-gray-100 p-1 transition-colors hover:bg-gray-300',
+              'data-turbo-method': :patch do
+            %>
+              <%= inline_svg_tag 'minus.svg' %>
+            <% end %>
+            <h4 class="min-h-8 min-w-8 bg-light-gray-100 p-1 text-center">
+              <%= cart_product.quantity %>
+            </h4>
+            <%= link_to cart_product_path(cart_product, quantity: cart_product.quantity + 1),
+              class: 'rounded-md rounded-l-none bg-light-gray-100 p-1 transition-colors hover:bg-gray-300',
+              'data-turbo-method': :patch do
+            %>
+              <%= inline_svg_tag 'plus.svg' %>
+            <% end %>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-0">
             <%= number_to_currency(cart_product.product.price * cart_product.quantity, unit: "₽", format: "%n %u") %>
-          <%= link_to cart_product_path(cart_product),
-            data: {
-              'turbo-method': :delete,
-              'turbo_confirm': 'Вы действительно хотите удалить товар?'
-            } do %>
-            <%= inline_svg_tag 'trash.svg',
-              class: 'trash-icon sm:absolute sm:right-0 sm:top-3 [&>path]:transition-colors [&>path]:hover:fill-light-gray-500' %>
-          <% end %>
+            <%= link_to cart_product_path(cart_product),
+              data: {
+                'turbo-method': :delete,
+                'turbo_confirm': 'Вы действительно хотите удалить товар?'
+              } do %>
+              <%= inline_svg_tag 'trash.svg',
+                class: 'trash-icon sm:absolute sm:right-0 sm:top-3 [&>path]:transition-colors [&>path]:hover:fill-light-gray-500' %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <% unless cart.cart_products.empty? %>
+  <turbo-frame id="cart-summary">
+    <div class="cart-summary mt-6 border border-light-gray-300 rounded-lg p-4 shadow-sm bg-light-gray-100" data-controller="discount">
+      <div class="slider-label-container flex justify-between">
+        <div class="slider-label">
+          <%= cart.cart_products.sum(:quantity) %> товара на сумму
+        </div>
+        <div class="slider-value text-black font-normal">
+          <%= number_to_currency(cart.total_price, unit: "₽", format: "%n %u") %>
         </div>
       </div>
-    </li>
-  <% end %>
-</ul>
 
-<% unless cart.cart_products.empty? %>
-  <div class="cart-summary">
-    <div class="slider-label-container">
-      <div class="slider-label">
-        <%= cart.cart_products.sum(:quantity) %> товара на сумму
+      <div class="slider-label-container">
+        <div class="slider-label">Передвигая слайдер, укажите сумму скидки</div>
+        <div class="slider-value" data-discount-target="value">0 ₽</div>
       </div>
-        <%= number_to_currency(cart.total_price, unit: "₽", format: "%n %u") %>
+
+      <div class="slider-container">
+        <div class="slider-labels">
+          <span>0 ₽</span>
+          <span>1000 ₽</span>
+        </div>
+
+        <input type="range" min="0" max="1000" value="0" class="slider"
+               data-discount-target="slider" data-action="input->discount#update">
+      </div>
+
+      <div class="border-t border-light-gray-300 mt-4 pt-4">
+        <div class="total-container flex justify-between items-center">
+          <p>Сумма заказа:</p>
+          <span data-discount-target="orderTotal" data-total="<%= cart.total_price %>" 
+                class="text-2xl font-bold"><%= cart.total_price %> ₽</span>
+        </div>
       </div>
     </div>
-  </div>
+  </turbo-frame>
 <% end %>
+
