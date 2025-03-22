@@ -1,5 +1,5 @@
 class CartProductsController < ApplicationController
-  def update
+    def update
     cart_product = CartProduct.find(params[:id])
     result = CartProducts::UpdateCartProductQuantity.call(cart_product: cart_product, new_quantity: params[:quantity])
 
@@ -8,7 +8,7 @@ class CartProductsController < ApplicationController
     else
       redirect_to cart_path, alert: result.error
     end
-  end
+    end
 
   def destroy
     cart_product = CartProduct.find(params[:id])
