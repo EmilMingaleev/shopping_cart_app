@@ -1,3 +1,3 @@
-  <form action="<%= clear_cart_path %>" method="post">
+<form action="<%= clear_cart_path %>" method="post" onsubmit="setTimeout(function() { location.reload(); }, 0);">
     <button type="submit" class="checkout-button">Оформить</button>
-  </form>
+</form>
