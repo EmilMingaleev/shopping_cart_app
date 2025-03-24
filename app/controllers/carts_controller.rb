@@ -12,9 +12,9 @@ class CartsController < ApplicationController
     discount = params[:discount].to_f.clamp(0, 1000)
 
     if @cart.update(discount: discount)
-      redirect_to cart_path, notice: "Скидка обновлена"
+      redirect_to cart_path, notice: t(".success")
     else
-      redirect_to cart_path, alert: "Ошибка обновления скидки"
+      redirect_to cart_path, alert: t(".error")
     end
   end
 
@@ -22,9 +22,9 @@ class CartsController < ApplicationController
     result = Carts::ClearCart.call(cart: current_cart)
 
     if result.success?
-      redirect_to cart_path, notice: "Корзина очищена"
+      redirect_to cart_path, notice: t(".success")
     else
-      redirect_to cart_path, alert: "Ошибка очистки корзины"
+      redirect_to cart_path, alert: t(".error")
     end
   end
 end

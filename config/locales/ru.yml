@@ -1,0 +1,68 @@
+ru:
+  cart:
+    title: "Корзина"
+    empty: "В корзине нет товаров"
+    clear: "Очистить корзину"
+    clear_confirm: "Вы действительно хотите очистить корзину?"
+    total_items: "%{count} товара на сумму"
+    total_price: "Сумма заказа:"
+    checkout: "Оформить заказ"
+    discount: "Передвигая слайдер, укажите сумму скидки"
+    remove_item: "Удалить товар"
+    confirm_remove: "Вы действительно хотите удалить этот товар?"
+    subtotal: "Промежуточный итог"
+    tax: "Налог"
+    final_total: "Итого"
+    continue_shopping: "Продолжить покупки"
+    update_quantity: "Изменить количество"
+  
+  cart_products:
+    add_to_cart:
+      errors:
+        cart_not_found: "Корзина не найдена"
+        product_not_found: "Товар не найден"
+        invalid_quantity: "Количество должно быть больше 0"
+        save_failed: "Ошибка добавления товара в корзину: %{error}"
+    remove_from_cart:
+      success: "Товар успешно удален из корзины"
+      error: "Не удалось удалить товар"
+
+  carts:
+    update_discount:
+      success: "Скидка обновлена"
+      error: "Ошибка обновления скидки"
+    clear:
+      success: "Корзина очищена"
+      error: "Ошибка очистки корзины"
+
+  products:
+    create:
+      success: "Товар создан"
+    update:
+      success: "Товар обновлен"
+    delete:
+      success: "Продукт удален"
+      error: "Ошибка удаления продукта"
+
+  product:
+    no_image: "Нет изображения"
+    add_to_cart: "Добавить в корзину"
+    price: "Цена"
+
+  messages:
+    delete_confirm: "Вы действительно хотите удалить товар?"
+    success_added: "Товар успешно добавлен в корзину!"
+    success_removed: "Товар успешно удален из корзины."
+    order_success: "Ваш заказ успешно оформлен!"
+
+  buttons:
+    add: "Добавить"
+    remove: "Удалить"
+    update: "Обновить"
+    checkout: "Оформить заказ"
+
+  navbar:
+    home: "Главная"
+    shop: "Магазин"
+    cart: "Корзина"
+    profile: "Профиль"

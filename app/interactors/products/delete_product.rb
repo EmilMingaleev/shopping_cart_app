@@ -6,9 +6,9 @@ module Products
       product = context.product
 
       if product.destroy
-        context.message = "Продукт удален."
+        context.message = I18n.t("products.delete.success")
       else
-        context.fail!(error: "Ошибка удаления продукта.")
+        context.fail!(error: I18n.t("products.delete.error"))
       end
     end
   end

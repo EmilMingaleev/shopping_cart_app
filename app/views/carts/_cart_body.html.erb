@@ -31,7 +31,7 @@
             <%= link_to cart_product_path(cart_product),
               data: {
                 'turbo-method': :delete,
-                'turbo_confirm': 'Вы действительно хотите удалить товар?'
+                'turbo_confirm': t('messages.delete_confirm')
               } do %>
               <%= inline_svg_tag 'trash.svg',
                 class: 'trash-icon sm:absolute sm:right-0 sm:top-3 [&>path]:transition-colors [&>path]:hover:fill-light-gray-500' %>
@@ -47,7 +47,7 @@
     <div class="cart-summary mt-6 border border-light-gray-300 rounded-lg p-4 shadow-sm bg-light-gray-100" data-controller="discount">
       <div class="slider-label-container flex justify-between">
         <div class="slider-label">
-          <%= cart.cart_products.sum(:quantity) %> товара на сумму
+          <%= t('cart.total_items', count: cart.cart_products.sum(:quantity)) %>
         </div>
         <div class="slider-value text-black font-normal">
           <%= number_to_currency(cart.total_price, unit: "₽", format: "%n %u") %>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="slider-label-container">
-        <div class="slider-label">Передвигая слайдер, укажите сумму скидки</div>
+        <div class="slider-label"><%= t('cart.discount') %></div>
         <div class="slider-value" data-discount-target="value">0 ₽</div>
       </div>
 
@@ -71,7 +71,7 @@
 
       <div class="border-t border-light-gray-300 mt-4 pt-4">
         <div class="total-container flex justify-between items-center">
-          <p>Сумма заказа:</p>
+          <p><%= t('cart.total_price') %></p>
           <span data-discount-target="orderTotal" data-total="<%= cart.total_price %>" 
                 class="text-2xl font-bold"><%= cart.total_price %> ₽</span>
         </div>
@@ -79,4 +79,3 @@
     </div>
   </turbo-frame>
 <% end %>
-
