@@ -1,16 +1,16 @@
 <div class="w-full mb-20">
   <header class="mb-8 flex flex-wrap items-center justify-between gap-6 sm:flex-nowrap">
     <h1 class="grow font-semibold" style="font-size: 30px;">
-      Корзина
+      <%= t('cart.title') %>
     </h1>
     <% if cart.cart_products.any? %>
       <div>
         <span>
-          <%= link_to 'Очистить корзину', clear_cart_path,
+          <%= link_to t('cart.clear'), clear_cart_path,
             class: 'slider-label transition-colors hover:text-dark-gray-900',
             data: {
               'turbo-method': :delete,
-              'turbo_confirm': 'Вы действительно хотите очистить корзину?'
+              'turbo_confirm': t('cart.clear_confirm')
             } %>
         </span>
       </div>
@@ -22,10 +22,10 @@
       <%= inline_svg_tag 'cart-empty.svg', class: 'mx-auto mb-6' %>
       <div class="text-center">
         <h2 class="font-semibold mb-2">
-          В корзине нет товаров
+          <%= t('cart.empty') %>
         </h2>
         <h5>
-          Добавьте товар из каталога.
+          <%= t('cart.continue_shopping') %>
         </h5>
       </div>
     </div>

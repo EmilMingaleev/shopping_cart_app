@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     result = Products::CreateProduct.call(product_params: product_params)
 
     if result.success?
-      redirect_to products_path, notice: "Товар создан"
+      redirect_to products_path, notice: t(".success")
     else
       redirect_to new_product_path, alert: result.error
     end
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     result = Products::UpdateProduct.call(product: product, product_params: product_params)
 
     if result.success?
-      redirect_to products_path, notice: "Товар обновлен"
+      redirect_to products_path, notice: t(".success")
     else
       redirect_to edit_product_path(product), alert: result.error
     end
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     result = Products::DeleteProduct.call(product: product)
 
     if result.success?
-      redirect_to products_path, notice: result.message
+      redirect_to products_path, notice: t(".success")
     else
       redirect_to products_path, alert: result.error
     end
