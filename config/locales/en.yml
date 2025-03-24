@@ -1,31 +1,68 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  cart:
+    title: "Shopping Cart"
+    empty: "Your cart is empty"
+    clear: "Clear cart"
+    clear_confirm: "Are you sure you want to clear the cart?"
+    total_items: "%{count} items for"
+    total_price: "Total price:"
+    checkout: "Checkout"
+    discount: "Move the slider to set the discount amount"
+    remove_item: "Remove item"
+    confirm_remove: "Are you sure you want to remove this item?"
+    subtotal: "Subtotal"
+    tax: "Tax"
+    final_total: "Total"
+    continue_shopping: "Continue shopping"
+    update_quantity: "Update quantity"
+
+  cart_products:
+    add_to_cart:
+      errors:
+        cart_not_found: "Cart not found"
+        product_not_found: "Product not found"
+        invalid_quantity: "Quantity must be greater than 0"
+        save_failed: "Failed to add product to cart: %{error}"
+    remove_from_cart:
+      success: "Product successfully removed from cart"
+      error: "Failed to remove product"
+
+  carts:
+    update_discount:
+      success: "Discount updated"
+      error: "Error updating discount"
+    clear:
+      success: "Cart cleared"
+      error: "Error clearing cart"
+
+  products:
+    create:
+      success: "Product created"
+    update:
+      success: "Product updated"
+    delete:
+      success: "Product deleted"
+      error: "Error deleting product"
+
+  product:
+    no_image: "No image available"
+    add_to_cart: "Add to cart"
+    price: "Price"
+
+  messages:
+    delete_confirm: "Are you sure you want to delete the item?"
+    success_added: "Item successfully added to cart!"
+    success_removed: "Item successfully removed from cart."
+    order_success: "Your order has been placed successfully!"
+
+  buttons:
+    add: "Add"
+    remove: "Remove"
+    update: "Update"
+    checkout: "Checkout"
+
+  navbar:
+    home: "Home"
+    shop: "Shop"
+    cart: "Cart"
+    profile: "Profile"
