@@ -4,10 +4,10 @@ ruby "3.4.2"
 
 gem "importmap-rails"
 gem "jbuilder"
-gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", ">= 5.0"
 gem "rails", "~> 8.0.2"
+gem "sqlite3"
 gem "stimulus-rails"
 gem "turbo-rails"
 
