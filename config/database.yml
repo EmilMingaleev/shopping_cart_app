@@ -16,8 +16,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: shopping_cart_user
-  password: shopping_cart_password
+  url: postgres://localhost/shopping_cart_app_development
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
